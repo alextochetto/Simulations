@@ -8,7 +8,44 @@ namespace SimulationConsole
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
-            CheckAppointmentInverted();
+            CheckAppointmentInvertedDateTime();
+            //CheckAppointmentInverted();
+        }
+
+        static void CheckAppointmentInvertedDateTime()
+        {
+            List<DateTime> avaliables = new List<DateTime>();
+            avaliables.Add(new DateTime(2023, 1, 13, 8, 0, 0));
+            avaliables.Add(new DateTime(2023, 1, 13, 9, 0, 0));
+            avaliables.Add(new DateTime(2023, 1, 13, 10, 0, 0));
+            avaliables.Add(new DateTime(2023, 1, 13, 11, 0, 0));
+            avaliables.Add(new DateTime(2023, 1, 13, 12, 0, 0));
+            avaliables.Add(new DateTime(2023, 1, 13, 13, 0, 0));
+            avaliables.Add(new DateTime(2023, 1, 13, 14, 0, 0));
+            avaliables.Add(new DateTime(2023, 1, 13, 15, 0, 0));
+            avaliables.Add(new DateTime(2023, 1, 13, 16, 0, 0));
+            avaliables.Add(new DateTime(2023, 1, 13, 17, 0, 0));
+            avaliables.Add(new DateTime(2023, 1, 13, 18, 0, 0));
+
+            List<DateTime> scheduledAppointments = new List<DateTime>();
+            scheduledAppointments.Add(new DateTime(2023, 1, 13, 9, 0, 0));
+            scheduledAppointments.Add(new DateTime(2023, 1, 13, 10, 0, 0));
+            scheduledAppointments.Add(new DateTime(2023, 1, 13, 11, 0, 0));
+            scheduledAppointments.Add(new DateTime(2023, 1, 13, 18, 0, 0));
+
+            List<DateTime> avaliableAppointments = new List<DateTime>();
+            foreach (DateTime date in avaliables)
+            {
+                DateTime datetimeFind = scheduledAppointments.Find(x => x == date);
+                if (datetimeFind == DateTime.MinValue)
+                {
+                    avaliableAppointments.Add(date);
+                }
+            }
+            foreach (DateTime item in avaliableAppointments)
+            {
+                Console.WriteLine("Datetime avaliable: " + item.ToString("dd/MM/yyyy HH:mm"));
+            }
         }
 
         static void CheckAppointmentInverted()
